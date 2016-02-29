@@ -19,17 +19,18 @@ var objects;
                 this.regX = this.width * 0.5;
                 this.regY = this.height * 0.5;
             }
+            this.alpha = 0.7;
             this.on("mouseover", this.overButton, this);
             this.on("mouseout", this.outButton, this);
         }
         // PRIVATE METHODS
         // Event Handler for mouse over
         Button.prototype.overButton = function (event) {
-            event.currentTarget.alpha = 0.7;
+            event.currentTarget.alpha = 1;
         };
         // Event Handler for mouse out
         Button.prototype.outButton = function (event) {
-            event.currentTarget.alpha = 1.0;
+            event.currentTarget.alpha = 0.7;
         };
         return Button;
     })(createjs.Bitmap);
