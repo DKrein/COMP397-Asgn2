@@ -11,8 +11,8 @@ var menu;
 var slotMachine;
 var gameOver;
 var assetData = [
-    //{id: "BackButton", src:"../../Assets/images/BackButton.png"},
-    //{id: "Nextbutton", src:"../../Assets/images/Nextbutton.png"},
+    { id: "BackButton", src: "../../Assets/images/BackButton.png" },
+    { id: "ResetBtn", src: "../../Assets/images/ResetBtn.png" },
     { id: "StartButton", src: "../../Assets/images/StartButton.png" },
     { id: "StartOverButton", src: "../../Assets/images/StartOverButton.png" },
     { id: "SlotMachine", src: "../../Assets/images/SlotMachine.png" },

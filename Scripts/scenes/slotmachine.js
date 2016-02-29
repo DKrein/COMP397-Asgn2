@@ -23,11 +23,17 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         SlotMachine.prototype.start = function () {
-            // Reset the Game to initial values 
-            this._resetAll();
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
             this.addChild(this._backgroundImage);
+            // add BackButton to the scene
+            this._backButton = new objects.Button("BackButton", 850, 75, false);
+            this.addChild(this._backButton);
+            this._backButton.on("click", this._backButtonClick, this);
+            // add ResetButton to the scene
+            this._resetButton = new objects.Button("ResetBtn", 850, 125, false);
+            this.addChild(this._resetButton);
+            this._resetButton.on("click", this._resetButtonClick, this);
             // add Bet1Button to the scene
             this._bet1Button = new objects.Button("Bet1Button", 90, 650, false);
             this.addChild(this._bet1Button);
@@ -45,21 +51,23 @@ var scenes;
             this.addChild(this._spinButton);
             this._spinButton.on("click", this._spinButtonClick, this);
             // add JackPot Text to the scene
-            this._jackpotText = new objects.Label(this.jackpot.toString(), "14px Consolas", "#ff0000", 353, 107, false);
+            this._jackpotText = new objects.Label("JACKPOT", "46px VT323", "#ff0000", 220, 75, false);
             this._jackpotText.textAlign = "right";
             this.addChild(this._jackpotText);
             // add Credits Text to the scene
-            this._creditsText = new objects.Label(this.playerMoney.toString(), "46px VT323", "#ff0000", 360, 481, false);
+            this._creditsText = new objects.Label("CREDITS", "46px VT323", "#ff0000", 360, 481, false);
             this._creditsText.textAlign = "right";
             this.addChild(this._creditsText);
             // add Bet Text to the scene
-            this._betText = new objects.Label(this.playerBet.toString(), "46px VT323", "#ff0000", 545, 481, false);
+            this._betText = new objects.Label("BET", "46px VT323", "#ff0000", 545, 481, false);
             this._betText.textAlign = "right";
             this.addChild(this._betText);
             // add Result Text to the scene
-            this._resultText = new objects.Label(this.winnings.toString(), "46px VT323", "#ff0000", 770, 481, false);
+            this._resultText = new objects.Label("WINNINGS", "46px VT323", "#ff0000", 770, 481, false);
             this._resultText.textAlign = "right";
             this.addChild(this._resultText);
+            // Reset the Game to initial values 
+            this._resetAll();
             // Initialize Array of Bitmaps 
             this._initializeBitmapArray();
             // Setup Background
@@ -78,10 +86,14 @@ var scenes;
             return (value >= lowerBounds && value <= upperBounds) ? value : -1;
         };
         SlotMachine.prototype._resetAll = function () {
+            this.jackpot = 5000;
             this.playerMoney = 1000;
             this.winnings = 0;
-            this.jackpot = 5000;
             this.playerBet = 0;
+            this._jackpotText.text = this.jackpot.toString();
+            this._creditsText.text = this.playerMoney.toString();
+            this._betText.text = this.playerBet.toString();
+            this._resultText.text = this.winnings.toString();
         };
         /* When this function is called it determines the betLine results.
         e.g. Bar - Watermelon - Banana */
@@ -181,6 +193,7 @@ var scenes;
                 console.log("Win!");
             }
             else {
+                this.winnings = 0;
                 console.log("Loss!");
             }
             this._resultText.text = this.winnings.toString();
@@ -218,6 +231,18 @@ var scenes;
             }
         };
         //EVENT HANDLERS ++++++++++++++++++++
+        SlotMachine.prototype._backButtonClick = function (event) {
+            console.log("Back button");
+            this._fadeOut(500, function () {
+                //go back to the menu
+                scene = config.Scene.MENU;
+                changeScene();
+            });
+        };
+        SlotMachine.prototype._resetButtonClick = function (event) {
+            console.log("Reset button");
+            this._resetAll();
+        };
         SlotMachine.prototype._bet1ButtonClick = function (event) {
             console.log("Bet 1 Credit");
             this._placeBet(1);

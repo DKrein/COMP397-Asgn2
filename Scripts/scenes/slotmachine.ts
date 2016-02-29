@@ -3,6 +3,8 @@ module scenes {
     export class SlotMachine extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
         private _backgroundImage: createjs.Bitmap;
+        private _backButton: objects.Button;
+        private _resetButton: objects.Button;
         private _bet1Button: objects.Button;
         private _bet10Button: objects.Button;
         private _bet100Button: objects.Button;
@@ -34,12 +36,21 @@ module scenes {
         
         // Start Method
         public start(): void { 
-            // Reset the Game to initial values 
-            this._resetAll();
+            
             
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
             this.addChild(this._backgroundImage);
+            
+            // add BackButton to the scene
+            this._backButton = new objects.Button("BackButton", 850, 75, false);
+            this.addChild(this._backButton);
+            this._backButton.on("click", this._backButtonClick, this); 
+            
+            // add ResetButton to the scene
+            this._resetButton = new objects.Button("ResetBtn", 850, 125, false);
+            this.addChild(this._resetButton);
+            this._resetButton.on("click", this._resetButtonClick, this); 
             
             // add Bet1Button to the scene
             this._bet1Button = new objects.Button("Bet1Button", 90, 650, false);
@@ -63,16 +74,16 @@ module scenes {
         
             // add JackPot Text to the scene
             this._jackpotText = new objects.Label(
-                this.jackpot.toString(),
-                "14px Consolas",
+                "JACKPOT",
+                "46px VT323",
                 "#ff0000",
-                353, 107, false);
+                220, 75, false);
             this._jackpotText.textAlign = "right";
             this.addChild(this._jackpotText);
         
             // add Credits Text to the scene
             this._creditsText = new objects.Label(
-                this.playerMoney.toString(),
+                "CREDITS",
                 "46px VT323",
                 "#ff0000",
                 360, 481, false);
@@ -81,7 +92,7 @@ module scenes {
             
             // add Bet Text to the scene
             this._betText = new objects.Label(
-                this.playerBet.toString(),
+                "BET",
                 "46px VT323",
                 "#ff0000",
                 545, 481, false);
@@ -90,12 +101,15 @@ module scenes {
             
             // add Result Text to the scene
             this._resultText = new objects.Label(
-                this.winnings.toString(),
+                "WINNINGS",
                 "46px VT323",
                 "#ff0000",
                 770, 481, false);
             this._resultText.textAlign = "right";
             this.addChild(this._resultText);
+            
+            // Reset the Game to initial values 
+            this._resetAll();
         
             // Initialize Array of Bitmaps 
             this._initializeBitmapArray();
@@ -122,10 +136,15 @@ module scenes {
         }
 
         private _resetAll() {
+            this.jackpot = 5000;
             this.playerMoney = 1000;
             this.winnings = 0;
-            this.jackpot = 5000;
             this.playerBet = 0;
+            
+            this._jackpotText.text = this.jackpot.toString();
+            this._creditsText.text = this.playerMoney.toString();
+            this._betText.text = this.playerBet.toString();
+            this._resultText.text = this.winnings.toString();
         }
         
         /* When this function is called it determines the betLine results.
@@ -228,6 +247,7 @@ module scenes {
                 console.log("Win!");
             }
             else {
+                this.winnings = 0;
                 console.log("Loss!");
             }
 
@@ -272,6 +292,19 @@ module scenes {
         }
         
         //EVENT HANDLERS ++++++++++++++++++++
+        private _backButtonClick(event: createjs.MouseEvent): void {
+            console.log("Back button");
+            this._fadeOut(500, () => {
+                //go back to the menu
+                scene = config.Scene.MENU;
+                changeScene();
+            });
+        }
+        
+        private _resetButtonClick(event: createjs.MouseEvent): void {
+            console.log("Reset button");
+            this._resetAll();
+        }
         
         private _bet1ButtonClick(event: createjs.MouseEvent): void {
             console.log("Bet 1 Credit");
