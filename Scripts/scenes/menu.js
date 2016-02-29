@@ -15,8 +15,8 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         Menu.prototype.start = function () {
-            this._introImage = new createjs.Bitmap("../../Assets/images/startMenu.png");
-            this.addChild(this._introImage);
+            this._menuImage = new createjs.Bitmap("../../Assets/images/startMenu.png");
+            this.addChild(this._menuImage);
             // add the START button to the MENU scene
             this._startButton = new objects.Button("StartButton", config.Screen.CENTER_X - 50, config.Screen.CENTER_Y + 80, true);
             this.addChild(this._startButton);

@@ -190,7 +190,7 @@ var scenes;
                 else {
                     this.winnings = this.playerBet * 1;
                 }
-                console.log("Win!");
+                console.log("Win! => " + this.winnings.toString());
             }
             else {
                 this.winnings = 0;
@@ -200,6 +200,9 @@ var scenes;
             this.playerMoney += this.winnings;
             this._creditsText.text = this.playerMoney.toString();
             this._resetFruitTally();
+            if (this.playerMoney == 0) {
+                this._gameOver();
+            }
         };
         SlotMachine.prototype._resetFruitTally = function () {
             this._diamond = 0;
@@ -229,6 +232,14 @@ var scenes;
                 this._creditsText.text = this.playerMoney.toString();
                 this._betText.text = this.playerBet.toString();
             }
+        };
+        SlotMachine.prototype._gameOver = function () {
+            console.log("Game over");
+            this._fadeOut(5000, function () {
+                //go back to the menu
+                scene = config.Scene.GAME_OVER;
+                changeScene();
+            });
         };
         //EVENT HANDLERS ++++++++++++++++++++
         SlotMachine.prototype._backButtonClick = function (event) {

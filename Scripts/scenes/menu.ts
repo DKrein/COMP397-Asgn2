@@ -2,7 +2,7 @@
 module scenes {
     export class Menu extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
-        private _introImage: createjs.Bitmap;
+        private _menuImage: createjs.Bitmap;
         private _startButton: objects.Button;
         
         // CONSTRUCTOR ++++++++++++++++++++++
@@ -15,8 +15,8 @@ module scenes {
         // Start Method
         public start(): void {    
 
-            this._introImage = new createjs.Bitmap("../../Assets/images/startMenu.png");
-            this.addChild(this._introImage);
+            this._menuImage = new createjs.Bitmap("../../Assets/images/startMenu.png");
+            this.addChild(this._menuImage);
             
             // add the START button to the MENU scene
             this._startButton = new objects.Button(

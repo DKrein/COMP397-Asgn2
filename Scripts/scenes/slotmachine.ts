@@ -244,7 +244,7 @@ module scenes {
                 else {
                     this.winnings = this.playerBet * 1;
                 }
-                console.log("Win!");
+                console.log("Win! => " + this.winnings.toString());
             }
             else {
                 this.winnings = 0;
@@ -255,6 +255,10 @@ module scenes {
             this.playerMoney += this.winnings;
             this._creditsText.text = this.playerMoney.toString();
             this._resetFruitTally();
+            
+            if (this.playerMoney == 0) {
+                this._gameOver();
+            }
 
         }
 
@@ -289,6 +293,15 @@ module scenes {
                 this._creditsText.text = this.playerMoney.toString();
                 this._betText.text = this.playerBet.toString();
             }
+        }
+        
+        private _gameOver(): void {
+            console.log("Game over");
+            this._fadeOut(5000, () => {
+                //go back to the menu
+                scene = config.Scene.GAME_OVER;
+                changeScene();
+            });
         }
         
         //EVENT HANDLERS ++++++++++++++++++++

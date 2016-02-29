@@ -29,7 +29,8 @@ var assetData = [
     { id: "Diamond", src: "../../Assets/images/Diamond.png" },
     { id: "Bar", src: "../../Assets/images/Bar.png" },
     { id: "Bell", src: "../../Assets/images/Bell.png" },
-    { id: "Seven", src: "../../Assets/images/Seven.png" }
+    { id: "Seven", src: "../../Assets/images/Seven.png" },
+    { id: "GameOver", src: "../../Assets/images/GameOver.jpg" }
 ];
 function preload() {
     assets = new createjs.LoadQueue();

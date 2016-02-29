@@ -2,8 +2,8 @@
 module scenes {
     export class GameOver extends objects.Scene {
         //PRIVATE INSTANCE VARIABLES ++++++++++++
+        private _gameOverImage: createjs.Bitmap;
         private _startOverButton:objects.Button;
-        private _gameOverLabel:objects.Label;
         
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -15,19 +15,13 @@ module scenes {
         // Start Method
         public start(): void {    
             
-            // add the WELCOME Label to the MENU scene
-            this._gameOverLabel = new objects.Label(
-                "GAME OVER", 
-                "60px Consolas", 
-                "#000000", 
-                config.Screen.CENTER_X, 
-                config.Screen.CENTER_Y, true);
-            this.addChild(this._gameOverLabel);      
-                   
+            this._gameOverImage = new createjs.Bitmap("../../Assets/images/GameOver.jpg");
+            this.addChild(this._gameOverImage);
+            
             // add the START button to the MENU scene
             this._startOverButton = new objects.Button(
-                "StartButton",
-                config.Screen.CENTER_X,
+                "StartOverButton",
+                config.Screen.CENTER_X-50,
                 config.Screen.CENTER_Y + 80, true);
             this.addChild(this._startOverButton);
             
@@ -38,19 +32,13 @@ module scenes {
             // add this scene to the global stage container
             stage.addChild(this);
         }
-
-        // INTRO Scene updates here
-        public update(): void {
-
-        }
-        
         
         //EVENT HANDLERS ++++++++++++++++++++
         
         // START Button click event handler
         private _startOverButtonClick(event: createjs.MouseEvent) {
             // Switch to the LEFT_CAVE Scene
-            scene = config.Scene.SLOT_MACHINE;
+            scene = config.Scene.MENU;
             changeScene();
         }
         
