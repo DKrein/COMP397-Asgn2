@@ -11,9 +11,9 @@ var scenes;
         // CONSTRUCTOR ++++++++++++++++++++++
         function SlotMachine() {
             _super.call(this);
-            this._grapes = 0;
+            this._diamond = 0;
             this._bananas = 0;
-            this._oranges = 0;
+            this._watermelon = 0;
             this._cherries = 0;
             this._bars = 0;
             this._bells = 0;
@@ -84,7 +84,7 @@ var scenes;
             this.playerBet = 0;
         };
         /* When this function is called it determines the betLine results.
-        e.g. Bar - Orange - Banana */
+        e.g. Bar - Watermelon - Banana */
         SlotMachine.prototype._spinReels = function () {
             var betLine = [" ", " ", " "];
             var outCome = [0, 0, 0];
@@ -96,28 +96,28 @@ var scenes;
                         this._blanks++;
                         break;
                     case this._checkRange(outCome[spin], 28, 37):
-                        betLine[spin] = "Grapes";
-                        this._grapes++;
+                        betLine[spin] = "Watermelon";
+                        this._watermelon++;
                         break;
                     case this._checkRange(outCome[spin], 38, 46):
                         betLine[spin] = "Banana";
                         this._bananas++;
                         break;
                     case this._checkRange(outCome[spin], 47, 54):
-                        betLine[spin] = "Orange";
-                        this._oranges++;
-                        break;
-                    case this._checkRange(outCome[spin], 55, 59):
                         betLine[spin] = "Cherry";
                         this._cherries++;
                         break;
-                    case this._checkRange(outCome[spin], 60, 62):
+                    case this._checkRange(outCome[spin], 55, 59):
                         betLine[spin] = "Bar";
                         this._bars++;
                         break;
-                    case this._checkRange(outCome[spin], 63, 64):
-                        betLine[spin] = "Bell";
+                    case this._checkRange(outCome[spin], 60, 62):
+                        betLine[spin] = "Bells";
                         this._bells++;
+                        break;
+                    case this._checkRange(outCome[spin], 63, 64):
+                        betLine[spin] = "Diamond";
+                        this._diamond++;
                         break;
                     case this._checkRange(outCome[spin], 65, 65):
                         betLine[spin] = "Seven";
@@ -130,13 +130,13 @@ var scenes;
         /* This function calculates the player's winnings, if any */
         SlotMachine.prototype._determineWinnings = function () {
             if (this._blanks == 0) {
-                if (this._grapes == 3) {
+                if (this._diamond == 3) {
                     this.winnings = this.playerBet * 10;
                 }
                 else if (this._bananas == 3) {
                     this.winnings = this.playerBet * 20;
                 }
-                else if (this._oranges == 3) {
+                else if (this._watermelon == 3) {
                     this.winnings = this.playerBet * 30;
                 }
                 else if (this._cherries == 3) {
@@ -151,13 +151,13 @@ var scenes;
                 else if (this._sevens == 3) {
                     this.winnings = this.playerBet * 100;
                 }
-                else if (this._grapes == 2) {
+                else if (this._diamond == 2) {
                     this.winnings = this.playerBet * 2;
                 }
                 else if (this._bananas == 2) {
                     this.winnings = this.playerBet * 2;
                 }
-                else if (this._oranges == 2) {
+                else if (this._watermelon == 2) {
                     this.winnings = this.playerBet * 3;
                 }
                 else if (this._cherries == 2) {
@@ -189,9 +189,9 @@ var scenes;
             this._resetFruitTally();
         };
         SlotMachine.prototype._resetFruitTally = function () {
-            this._grapes = 0;
+            this._diamond = 0;
             this._bananas = 0;
-            this._oranges = 0;
+            this._watermelon = 0;
             this._cherries = 0;
             this._bars = 0;
             this._bells = 0;

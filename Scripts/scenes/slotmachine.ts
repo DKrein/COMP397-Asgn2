@@ -17,9 +17,9 @@ module scenes {
         private jackpot: number;
         private playerBet: number;
 
-        private _grapes = 0;
+        private _diamond = 0;
         private _bananas = 0;
-        private _oranges = 0;
+        private _watermelon = 0;
         private _cherries = 0;
         private _bars = 0;
         private _bells = 0;
@@ -129,7 +129,7 @@ module scenes {
         }
         
         /* When this function is called it determines the betLine results.
-        e.g. Bar - Orange - Banana */
+        e.g. Bar - Watermelon - Banana */
         private _spinReels(): string[] {
             var betLine = [" ", " ", " "];
             var outCome = [0, 0, 0];
@@ -142,28 +142,28 @@ module scenes {
                         this._blanks++;
                         break;
                     case this._checkRange(outCome[spin], 28, 37): // 15.4% probability
-                        betLine[spin] = "Grapes";
-                        this._grapes++;
+                        betLine[spin] = "Watermelon";
+                        this._watermelon++;
                         break;
                     case this._checkRange(outCome[spin], 38, 46): // 13.8% probability
                         betLine[spin] = "Banana";
                         this._bananas++;
                         break;
                     case this._checkRange(outCome[spin], 47, 54): // 12.3% probability
-                        betLine[spin] = "Orange";
-                        this._oranges++;
-                        break;
-                    case this._checkRange(outCome[spin], 55, 59): //  7.7% probability
                         betLine[spin] = "Cherry";
                         this._cherries++;
                         break;
-                    case this._checkRange(outCome[spin], 60, 62): //  4.6% probability
+                    case this._checkRange(outCome[spin], 55, 59): //  7.7% probability
                         betLine[spin] = "Bar";
                         this._bars++;
                         break;
-                    case this._checkRange(outCome[spin], 63, 64): //  3.1% probability
-                        betLine[spin] = "Bell";
+                    case this._checkRange(outCome[spin], 60, 62): //  4.6% probability
+                        betLine[spin] = "Bells";
                         this._bells++;
+                        break;
+                    case this._checkRange(outCome[spin], 63, 64): //  3.1% probability
+                        betLine[spin] = "Diamond";
+                        this._diamond++;
                         break;
                     case this._checkRange(outCome[spin], 65, 65): //  1.5% probability
                         betLine[spin] = "Seven";
@@ -177,13 +177,13 @@ module scenes {
         /* This function calculates the player's winnings, if any */
         private _determineWinnings(): void {
             if (this._blanks == 0) {
-                if (this._grapes == 3) {
+                if (this._diamond == 3) {
                     this.winnings = this.playerBet * 10;
                 }
                 else if (this._bananas == 3) {
                     this.winnings = this.playerBet * 20;
                 }
-                else if (this._oranges == 3) {
+                else if (this._watermelon == 3) {
                     this.winnings = this.playerBet * 30;
                 }
                 else if (this._cherries == 3) {
@@ -198,13 +198,13 @@ module scenes {
                 else if (this._sevens == 3) {
                     this.winnings = this.playerBet * 100;
                 }
-                else if (this._grapes == 2) {
+                else if (this._diamond == 2) {
                     this.winnings = this.playerBet * 2;
                 }
                 else if (this._bananas == 2) {
                     this.winnings = this.playerBet * 2;
                 }
-                else if (this._oranges == 2) {
+                else if (this._watermelon == 2) {
                     this.winnings = this.playerBet * 3;
                 }
                 else if (this._cherries == 2) {
@@ -239,9 +239,9 @@ module scenes {
         }
 
         private _resetFruitTally(): void {
-            this._grapes = 0;
+            this._diamond = 0;
             this._bananas = 0;
-            this._oranges = 0;
+            this._watermelon = 0;
             this._cherries = 0;
             this._bars = 0;
             this._bells = 0;

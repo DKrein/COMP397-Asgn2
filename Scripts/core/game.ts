@@ -27,10 +27,10 @@ var assetData:objects.Asset[] = [
     {id: "BlackBackground", src:"../../Assets/images/BlackBackground.png"},
     {id: "WhiteBackground", src:"../../Assets/images/WhiteBackground.png"},
     {id: "Blank", src:"../../Assets/images/Blank.png"},
-    {id: "Grapes", src:"../../Assets/images/Grapes.png"},
+    {id: "Watermelon", src:"../../Assets/images/Watermelon.png"},
     {id: "Banana", src:"../../Assets/images/Banana.png"},
     {id: "Cherry", src:"../../Assets/images/Cherry.png"},
-    {id: "Orange", src:"../../Assets/images/Orange.png"},
+    {id: "Diamond", src:"../../Assets/images/Diamond.png"},
     {id: "Bar", src:"../../Assets/images/Bar.png"},
     {id: "Bell", src:"../../Assets/images/Bell.png"},
     {id: "Seven", src:"../../Assets/images/Seven.png"}
