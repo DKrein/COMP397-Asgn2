@@ -85,6 +85,18 @@ var scenes;
         SlotMachine.prototype._checkRange = function (value, lowerBounds, upperBounds) {
             return (value >= lowerBounds && value <= upperBounds) ? value : -1;
         };
+        SlotMachine.prototype._checkJackpot = function () {
+            var jackPotTry = Math.floor(Math.random() * 51 + 1);
+            var jackPotWin = Math.floor(Math.random() * 51 + 1);
+            if (jackPotTry == jackPotWin) {
+                alert("You Won the $" + this.jackpot + " Jackpot!!");
+                this.playerMoney += this.jackpot;
+                this.jackpot = 1000;
+                //set text on the screen        
+                this._creditsText.text = this.playerMoney.toString();
+                this._jackpotText.text = this.jackpot.toString();
+            }
+        };
         SlotMachine.prototype._resetAll = function () {
             this.jackpot = 5000;
             this.playerMoney = 1000;
