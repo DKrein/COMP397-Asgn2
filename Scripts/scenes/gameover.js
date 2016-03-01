@@ -1,3 +1,13 @@
+/*
+Author: Douglas Krein
+Last Modified by: Douglas Krein
+Last Modified: 29-02-2016
+File description:
+- Controls the Game Over scene
+
+Revision:
+1 - Label showing the game over text removed
+*/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }

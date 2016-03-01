@@ -1,3 +1,14 @@
+/*
+Author: Douglas Krein
+Last Modified by: Douglas Krein
+Last Modified: 29-02-2016
+File description: 
+- Controls the Game Over scene
+
+Revision:
+1 - Label showing the game over text removed
+*/
+
 // GAME_OVER SCENE
 module scenes {
     export class GameOver extends objects.Scene {

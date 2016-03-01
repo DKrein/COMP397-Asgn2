@@ -1,4 +1,15 @@
 /// <reference path = "_reference.ts" />
+/*
+Author: Douglas Krein
+Last Modified by: Douglas Krein
+Last Modified: 29-02-2016
+File description:
+- Controls game core, preload, game loop and init event
+
+Revision:
+1 - some images were changed
+2 - sounds added to the preload
+*/
 // global variables
 var assets;
 var canvas;
@@ -10,6 +21,7 @@ var scene;
 var menu;
 var slotMachine;
 var gameOver;
+//images and sounds are inserted here in order to preload
 var assetData = [
     { id: "BackButton", src: "../../Assets/images/BackButton.png" },
     { id: "ResetBtn", src: "../../Assets/images/ResetBtn.png" },

@@ -1,3 +1,21 @@
+/*
+Author: Douglas Krein
+Last Modified by: Douglas Krein
+Last Modified: 29-02-2016
+File description:
+- Control all the events and action in the SlotMachine AKA main scene
+
+Revision:
+1 - changed buttons position
+2 - changed font and label position
+3 - reel position was changed because the images were bigger
+4 - fixed to show the results = 0 if you loses
+5 - fixed winnings according images
+6 - added the condition to redirect for the gameover scene if you dont have enough money
+7 - added buttons to go back and reset game
+8 - added the option to win jackpot, changes reduced in order to test functionality
+9 - sounds added when winning, jackpot, error when no money and game over
+*/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }

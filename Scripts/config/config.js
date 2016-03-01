@@ -1,3 +1,13 @@
+/*
+Author: Douglas Krein
+Last Modified by: Douglas Krein
+Last Modified: 27-02-2016
+File description:
+- Control general configs for the game
+
+Revision:
+1 - Screen size changed
+*/
 var config;
 (function (config) {
     // Scene Constants

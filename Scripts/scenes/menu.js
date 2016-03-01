@@ -1,3 +1,15 @@
+/*
+Author: Douglas Krein
+Last Modified by: Douglas Krein
+Last Modified: 28-02-2016
+File description:
+- Controls MENU scene
+
+Revision:
+1 - label removed from the scene
+2 - changed position of the start button
+3 - background image added to the scene
+*/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
