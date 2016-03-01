@@ -135,19 +135,23 @@ module scenes {
             return (value >= lowerBounds && value <= upperBounds) ? value : -1;
         }
         
-        private _checkJackpot(): void {
+        private _checkJackpot(): any {
             var jackPotTry = Math.floor(Math.random() * 51 + 1);
             var jackPotWin = Math.floor(Math.random() * 51 + 1);
             
+            var winning : number = 0;
+            
             if (jackPotTry == jackPotWin) {
+                winning =  this.jackpot;
                 alert("You Won the $" + this.jackpot + " Jackpot!!");
                 this.playerMoney += this.jackpot;
                 this.jackpot = 1000;
                 
                 //set text on the screen        
-                this._creditsText.text = this.playerMoney.toString();    
                 this._jackpotText.text = this.jackpot.toString();
             }            
+            
+            return winning;
         }
 
 
@@ -260,7 +264,10 @@ module scenes {
                 else {
                     this.winnings = this.playerBet * 1;
                 }
+                
+                this.winnings += this._checkJackpot();
                 console.log("Win! => " + this.winnings.toString());
+                
             }
             else {
                 this.winnings = 0;
