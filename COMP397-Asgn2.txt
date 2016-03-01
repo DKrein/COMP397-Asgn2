@@ -1,0 +1,2 @@
+GITHUB: https://github.com/DKrein/COMP397-Asgn2
+LIVE WEBSITE: http://comp397-asgn2-dok.azurewebsites.net/
