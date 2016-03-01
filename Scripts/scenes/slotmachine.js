@@ -86,16 +86,20 @@ var scenes;
             return (value >= lowerBounds && value <= upperBounds) ? value : -1;
         };
         SlotMachine.prototype._checkJackpot = function () {
-            var jackPotTry = Math.floor(Math.random() * 51 + 1);
-            var jackPotWin = Math.floor(Math.random() * 51 + 1);
+            var jackPotTry = Math.floor(Math.random() * 15 + 1);
+            var jackPotWin = Math.floor(Math.random() * 15 + 1);
+            var winning = 0;
+            console.log("jackpot try: " + jackPotTry + " jackpot win: " + jackPotWin);
             if (jackPotTry == jackPotWin) {
-                alert("You Won the $" + this.jackpot + " Jackpot!!");
+                createjs.Sound.play("Jackpot");
+                winning = this.jackpot;
                 this.playerMoney += this.jackpot;
                 this.jackpot = 1000;
                 //set text on the screen        
-                this._creditsText.text = this.playerMoney.toString();
                 this._jackpotText.text = this.jackpot.toString();
+                alert("You Won the $" + this.jackpot + " Jackpot!!");
             }
+            return winning;
         };
         SlotMachine.prototype._resetAll = function () {
             this.jackpot = 5000;
@@ -202,6 +206,8 @@ var scenes;
                 else {
                     this.winnings = this.playerBet * 1;
                 }
+                createjs.Sound.play("Win");
+                this.winnings += this._checkJackpot();
                 console.log("Win! => " + this.winnings.toString());
             }
             else {
@@ -244,8 +250,12 @@ var scenes;
                 this._creditsText.text = this.playerMoney.toString();
                 this._betText.text = this.playerBet.toString();
             }
+            else {
+                createjs.Sound.play("ErrorSound");
+            }
         };
         SlotMachine.prototype._gameOver = function () {
+            createjs.Sound.play("GameOverSound");
             console.log("Game over");
             this._fadeOut(5000, function () {
                 //go back to the menu
@@ -267,7 +277,7 @@ var scenes;
             this._resetAll();
         };
         SlotMachine.prototype._bet1ButtonClick = function (event) {
-            console.log("Bet 1 Credit");
+            console.log("Bet 1 Credit ");
             this._placeBet(1);
         };
         SlotMachine.prototype._bet10ButtonClick = function (event) {

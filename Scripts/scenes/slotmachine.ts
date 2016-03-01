@@ -136,19 +136,23 @@ module scenes {
         }
         
         private _checkJackpot(): any {
-            var jackPotTry = Math.floor(Math.random() * 51 + 1);
-            var jackPotWin = Math.floor(Math.random() * 51 + 1);
+            var jackPotTry = Math.floor(Math.random() * 15 + 1);
+            var jackPotWin = Math.floor(Math.random() * 15 + 1);
             
             var winning : number = 0;
             
+            console.log("jackpot try: "+jackPotTry+" jackpot win: "+jackPotWin);
+            
             if (jackPotTry == jackPotWin) {
-                winning =  this.jackpot;
-                alert("You Won the $" + this.jackpot + " Jackpot!!");
+                createjs.Sound.play("Jackpot");
+                winning = this.jackpot;                
                 this.playerMoney += this.jackpot;
                 this.jackpot = 1000;
                 
                 //set text on the screen        
                 this._jackpotText.text = this.jackpot.toString();
+                
+                alert("You Won the $" + this.jackpot + " Jackpot!!");
             }            
             
             return winning;
@@ -265,6 +269,7 @@ module scenes {
                     this.winnings = this.playerBet * 1;
                 }
                 
+                createjs.Sound.play("Win");
                 this.winnings += this._checkJackpot();
                 console.log("Win! => " + this.winnings.toString());
                 
@@ -315,10 +320,13 @@ module scenes {
                 this.playerMoney -= playerBet;
                 this._creditsText.text = this.playerMoney.toString();
                 this._betText.text = this.playerBet.toString();
+            } else {
+                 createjs.Sound.play("ErrorSound");
             }
         }
         
         private _gameOver(): void {
+            createjs.Sound.play("GameOverSound");
             console.log("Game over");
             this._fadeOut(5000, () => {
                 //go back to the menu
@@ -343,7 +351,7 @@ module scenes {
         }
         
         private _bet1ButtonClick(event: createjs.MouseEvent): void {
-            console.log("Bet 1 Credit");
+            console.log("Bet 1 Credit ");
             this._placeBet(1);
         }
 
@@ -371,8 +379,7 @@ module scenes {
                 // reset player's bet to zero
                 this.playerBet = 0;
                 this._betText.text = this.playerBet.toString();
-            }
-
+            } 
         }
     }
 }

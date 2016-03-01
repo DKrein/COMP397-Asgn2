@@ -30,7 +30,11 @@ var assetData = [
     { id: "Bar", src: "../../Assets/images/Bar.png" },
     { id: "Bell", src: "../../Assets/images/Bell.png" },
     { id: "Seven", src: "../../Assets/images/Seven.png" },
-    { id: "GameOver", src: "../../Assets/images/GameOver.jpg" }
+    { id: "GameOver", src: "../../Assets/images/GameOver.jpg" },
+    { id: "GameOverSound", src: "../../Assets/sounds/GameOver.ogg" },
+    { id: "ErrorSound", src: "../../Assets/sounds/Error.ogg" },
+    { id: "Jackpot", src: "../../Assets/sounds/Jackpot.ogg" },
+    { id: "Win", src: "../../Assets/sounds/Win.ogg" }
 ];
 function preload() {
     assets = new createjs.LoadQueue();
